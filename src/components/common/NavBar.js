@@ -7,12 +7,12 @@ const { Header } = Layout;
 function NavBar() {
   const { user, setUser, firebaseAuth } = useContext(UserContext);
   function signOut() {
-    //   firebaseAuth.signOut()
-    //     .then(() => {
+      firebaseAuth.signOut()
+        .then(() => {
     setUser(null);
     localStorage.setItem("user", null);
-    // })
-    // .catch((error) => console.log(error))
+    })
+    .catch((error) => console.log(error))
   }
   return (
     <Header>

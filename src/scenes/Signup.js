@@ -23,13 +23,14 @@ const Signup = () => {
   const { setUser, firebaseAuth } = useContext(UserContext)
   let history = useHistory()
   const onFinish = ({ email, password }) => {
-    // firebaseAuth.createUserWithEmailAndPassword(email, password)
-    //   .then(res => {
+    firebaseAuth.createUserWithEmailAndPassword(email, password)
+      .then(res => {
         setError(null)
-        // setUser(res.user)
+        setUser(res.user)
+        localStorage.setItem('user', JSON.stringify(res.user))
         history.push("/")
-      // })
-      // .catch(err => setError(err.message))
+      })
+      .catch(err => setError(err.message))
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)

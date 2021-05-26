@@ -27,17 +27,18 @@ const Login = () => {
   let history = useHistory()
   const onFinish = ({ email, password }) => {
     setLoading(true)
-    // firebase.auth().signInWithEmailAndPassword(email, password)
-    //   .then(res => {
-    //     setError(null)
-    //     setUser(res.user)
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(res => {
+        setError(null)
+        setUser(res.user)
+        localStorage.setItem('user', JSON.stringify(res.user))
         setLoading(false)
         history.push("/")
-      // })
-      // .catch(err => {
-      //   setLoading(false)
-      //   setError(err.message)
-      // })
+      })
+      .catch(err => {
+        setLoading(false)
+        setError(err.message)
+      })
   }
   const loginWithGoogle = () => {
     setLoading(true)
